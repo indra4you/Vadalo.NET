@@ -1,7 +1,7 @@
 .vs
 .vscode
 
+TestResults
 bin
 obj
-local_db
-TestResults
+Local.Env/local_db
