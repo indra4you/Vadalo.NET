@@ -1,6 +1,11 @@
 name: CI - Vadalo.Base
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Vadalo.Base/**
 
 jobs:
   build:
@@ -45,5 +50,5 @@ jobs:
       - name: Restore NuGet Packages
         run: dotnet restore
       
-      - name: Build
-        run: dotnet build
+      - name: Unit Tests
+        run: dotnet test
