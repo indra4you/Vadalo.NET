@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - .github/**
       - Vadalo.Base/**
 
 jobs:
