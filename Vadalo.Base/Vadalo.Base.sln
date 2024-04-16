@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Base", "Code\Vadalo.Base\Vadalo.Base.csproj", "{54C2617C-78D1-472E-BF7F-BF7497C262E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Base.UnitTests", "UnitTests\Vadalo.Base.UnitTests\Vadalo.Base.UnitTests.csproj", "{0796E0D1-95FD-489D-AB0A-78041700771F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{A17701E8-0678-4B87-9094-CC33A9F60C77}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54C2617C-78D1-472E-BF7F-BF7497C262E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C2617C-78D1-472E-BF7F-BF7497C262E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C2617C-78D1-472E-BF7F-BF7497C262E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C2617C-78D1-472E-BF7F-BF7497C262E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0796E0D1-95FD-489D-AB0A-78041700771F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0796E0D1-95FD-489D-AB0A-78041700771F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0796E0D1-95FD-489D-AB0A-78041700771F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0796E0D1-95FD-489D-AB0A-78041700771F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0796E0D1-95FD-489D-AB0A-78041700771F} = {A17701E8-0678-4B87-9094-CC33A9F60C77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4A32506-60E4-4D58-9403-62C0BE63AF00}
+	EndGlobalSection
+EndGlobal

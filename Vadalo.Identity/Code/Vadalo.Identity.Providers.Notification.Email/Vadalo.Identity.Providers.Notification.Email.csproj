@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Vadalo.Identity.Providers</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\Invitation.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\Invitation.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Vadalo.Notification\Code\Vadalo.Notification.Email\Vadalo.Notification.Email.csproj" />
+    <ProjectReference Include="..\Vadalo.Identity\Vadalo.Identity.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <RootNamespace>Vadalo.Web.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Vadalo.Data.Base\Code\Vadalo.Data.SqlServer\Vadalo.Data.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\Vadalo.HealthCheck\Code\Vadalo.HealthCheck.Web\Vadalo.HealthCheck.Web.csproj" />
+    <ProjectReference Include="..\..\..\Vadalo.Identity\Code\Vadalo.Identity.Providers.Data.SqlServer\Vadalo.Identity.Providers.Data.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\Vadalo.Identity\Code\Vadalo.Identity.Providers.Notification.Email\Vadalo.Identity.Providers.Notification.Email.csproj" />
+    <ProjectReference Include="..\..\..\Vadalo.Identity\Code\Vadalo.Identity\Vadalo.Identity.csproj" />
+  </ItemGroup>
+
+</Project>
