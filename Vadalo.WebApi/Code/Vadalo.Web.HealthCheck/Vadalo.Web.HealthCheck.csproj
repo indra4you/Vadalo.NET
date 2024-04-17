@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Vadalo.Web.HealthCheck</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Templates\HealthCheck.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\HealthCheck.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Vadalo.Data.Base\Code\Vadalo.Data.SqlServer\Vadalo.Data.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\Vadalo.HealthCheck\Code\Vadalo.HealthCheck\Vadalo.HealthCheck.csproj" />
+    <ProjectReference Include="..\..\..\Vadalo.Notification\Code\Vadalo.Notification.Email\Vadalo.Notification.Email.csproj" />
+  </ItemGroup>
+
+</Project>

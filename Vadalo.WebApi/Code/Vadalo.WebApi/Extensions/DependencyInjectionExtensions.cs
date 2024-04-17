@@ -29,7 +29,7 @@ internal static class DependencyInjectionExtensions
                     )
             )
             .AddSingleton<Data.IDataProvider, Data.SqlServerDataProvider>()
-            .AddTransient<HealthCheck.IHealthCheck, Data.SqlServerHealthCheque>();
+            .AddTransient<Vadalo.HealthCheck.IHealthCheck, HealthCheck.SqlServerHealthCheque>();
 
         return serviceCollection;
     }
@@ -76,6 +76,9 @@ internal static class DependencyInjectionExtensions
                 )
                 .AddTransient<Notification.IEmailNotificationService, Notification.EmailNotificationToServerService>();
         }
+
+        serviceCollection
+            .AddTransient<Vadalo.HealthCheck.IHealthCheck, HealthCheck.EmailNotificationHealthCheque>();
 
         return serviceCollection;
     }

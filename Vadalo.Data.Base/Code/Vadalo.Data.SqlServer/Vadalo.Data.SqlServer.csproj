@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Vadalo.HealthCheck\Code\Vadalo.HealthCheck\Vadalo.HealthCheck.csproj" />
     <ProjectReference Include="..\Vadalo.Data.Base\Vadalo.Data.Base.csproj" />
   </ItemGroup>
 

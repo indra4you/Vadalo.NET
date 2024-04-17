@@ -11,7 +11,7 @@ public sealed class HealthController : ControllerBase
     [HttpGet]
     [AllowAnonymous]
     public async Task<IActionResult> Get(
-        [FromServices] HealthCheck.IHealthCheckService healthCheckService,
+        [FromServices] Vadalo.HealthCheck.IHealthCheckService healthCheckService,
         CancellationToken cancellationToken = default
     )
     {
