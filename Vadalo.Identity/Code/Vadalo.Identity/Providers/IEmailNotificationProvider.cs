@@ -7,4 +7,8 @@ public interface IEmailNotificationProvider
     Task SendInvitation(
         InviteNotificationModel inviteNotificationModel
     );
+
+    Task SendOneTimePassword(
+        OneTimePasswordNotificationModel oneTimePasswordNotificationModel
+    );
 }

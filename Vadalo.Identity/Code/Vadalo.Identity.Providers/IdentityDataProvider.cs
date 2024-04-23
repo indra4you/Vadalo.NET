@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Vadalo.Identity.Providers;
@@ -78,7 +77,7 @@ public sealed class IdentityDataProvider(
             .FirstOrDefault();
     }
 
-    public async Task CreateIdentity(
+    public async Task CreateIdentityNode(
         Guid invitedBy,
         string signInID
     )
@@ -98,6 +97,32 @@ public sealed class IdentityDataProvider(
                     VALUES (
                           @_invited_by
                         , @_sign_in_id
+                    )
+                ",
+                parameters
+            );
+    }
+
+    public async Task CreatePassHashNode(
+        Guid identityID,
+        string passHash
+    )
+    {
+        var parameters = _dataProvider.CreateParameters()
+            .AddParameter("@_identity_id", identityID, DbType.Guid)
+            .AddParameter("@_pass_hash", passHash);
+
+        await _dataProvider
+            .ExecuteNonQuery(
+                @"
+                    INSERT INTO [dbo].[pass_hashes]
+                    (
+                          [identity_id]
+                        , [pass_hash]
+                    )
+                    VALUES (
+                          @_identity_id
+                        , @_pass_hash
                     )
                 ",
                 parameters

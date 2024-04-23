@@ -105,7 +105,15 @@ internal static class Extensions
             .Verifiable();
         mockIdentityDataProvider
             .Setup(
-                expression => expression.CreateIdentity(It.IsAny<Guid>(), It.IsAny<string>())
+                expression => expression.CreateIdentityNode(It.IsAny<Guid>(), It.IsAny<string>())
+            )
+            .Returns(
+                Task.CompletedTask
+            )
+            .Verifiable();
+        mockIdentityDataProvider
+            .Setup(
+                expression => expression.CreatePassHashNode(It.IsAny<Guid>(), It.IsAny<string>())
             )
             .Returns(
                 Task.CompletedTask
@@ -113,6 +121,30 @@ internal static class Extensions
             .Verifiable();
 
         return mockIdentityDataProvider;
+    }
+
+    internal static Mock<Providers.IPasswordProvider> ArrangePasswordProvider(
+        this IIdentityServiceTests _,
+        string mockOneTimePassword = "000000",
+        string mockPasswordHash = "passwordHash"
+    )
+    {
+        var mockPasswordProvider = new Mock<Providers.IPasswordProvider>(
+            MockBehavior.Strict
+        );
+        mockPasswordProvider
+            .Setup(
+                expression => expression.GeneratePassword()
+            )
+            .Returns(
+                (
+                    mockOneTimePassword,
+                    mockPasswordHash
+                )
+            )
+            .Verifiable();
+
+        return mockPasswordProvider;
     }
 
     internal static Mock<Providers.IEmailNotificationProvider> ArrangeEmailNotificationProvider(
@@ -125,6 +157,14 @@ internal static class Extensions
         mockEmailNotificationProvider
             .Setup(
                 expression => expression.SendInvitation(It.IsAny<Providers.InviteNotificationModel>())
+            )
+            .Returns(
+                Task.CompletedTask
+            )
+            .Verifiable();
+        mockEmailNotificationProvider
+            .Setup(
+                expression => expression.SendOneTimePassword(It.IsAny<Providers.OneTimePasswordNotificationModel>())
             )
             .Returns(
                 Task.CompletedTask

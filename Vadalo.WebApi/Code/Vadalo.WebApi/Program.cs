@@ -51,7 +51,9 @@ public static class Program
                 webApplicationBuilder.Configuration,
                 webApplicationBuilder.Environment
             )
-            .AddIdentity();
+            .AddIdentity(
+                webApplicationBuilder.Configuration
+            );
 
         // Add controller
         webApplicationBuilder.Services

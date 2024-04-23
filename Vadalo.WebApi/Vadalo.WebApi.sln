@@ -25,15 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Data.SqlServer.UnitT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Notification.Email.UnitTests", "..\Vadalo.Notification\UnitTests\Vadalo.Notification.Email.UnitTests\Vadalo.Notification.Email.UnitTests.csproj", "{9D25F7A6-5B0E-4C6F-8DC2-75BAD863DD45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.Providers.Data.SqlServer", "..\Vadalo.Identity\Code\Vadalo.Identity.Providers.Data.SqlServer\Vadalo.Identity.Providers.Data.SqlServer.csproj", "{5593E033-FDC7-4600-AB6E-19C2CC602736}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.Providers.Notification.Email", "..\Vadalo.Identity\Code\Vadalo.Identity.Providers.Notification.Email\Vadalo.Identity.Providers.Notification.Email.csproj", "{E9722BB7-12FE-4F79-A2F2-C0EE8F680B9B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.UnitTests", "..\Vadalo.Identity\UnitTests\Vadalo.Identity.UnitTests\Vadalo.Identity.UnitTests.csproj", "{2FF1DF50-A559-4874-B2F8-93A3A488440C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.Providers.Data.SqlServer.UnitTests", "..\Vadalo.Identity\UnitTests\Vadalo.Identity.Providers.Data.SqlServer.UnitTests\Vadalo.Identity.Providers.Data.SqlServer.UnitTests.csproj", "{5F31D7C4-3E7D-4FCF-BBFE-C5A3A7621C0F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.Providers.Notification.Email.UnitTests", "..\Vadalo.Identity\UnitTests\Vadalo.Identity.Providers.Notification.Email.UnitTests\Vadalo.Identity.Providers.Notification.Email.UnitTests.csproj", "{8BAE3061-2060-4226-A2AE-9C2E848BDD01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.HealthCheck", "..\Vadalo.HealthCheck\Code\Vadalo.HealthCheck\Vadalo.HealthCheck.csproj", "{C2EA57A3-3E1B-4F2C-AAD8-776D8EF978A9}"
 EndProject
@@ -44,6 +36,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.WebApi.UnitTests", "UnitTests\Vadalo.WebApi.UnitTests\Vadalo.WebApi.UnitTests.csproj", "{17A40E78-FF37-42F9-8C5D-5094897EFB60}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Web.HealthCheck", "Code\Vadalo.Web.HealthCheck\Vadalo.Web.HealthCheck.csproj", "{8007208D-C7F1-47B3-B3E3-6BA50A8BFB6F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.Providers", "..\Vadalo.Identity\Code\Vadalo.Identity.Providers\Vadalo.Identity.Providers.csproj", "{315BEC98-7232-40DB-BD68-64FB6A41F4E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vadalo.Identity.Providers.UnitTests", "..\Vadalo.Identity\UnitTests\Vadalo.Identity.Providers.UnitTests\Vadalo.Identity.Providers.UnitTests.csproj", "{5EC3A386-8735-40C5-8F41-1E0C6AFFBA30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,26 +87,10 @@ Global
 		{9D25F7A6-5B0E-4C6F-8DC2-75BAD863DD45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D25F7A6-5B0E-4C6F-8DC2-75BAD863DD45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D25F7A6-5B0E-4C6F-8DC2-75BAD863DD45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5593E033-FDC7-4600-AB6E-19C2CC602736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5593E033-FDC7-4600-AB6E-19C2CC602736}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5593E033-FDC7-4600-AB6E-19C2CC602736}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5593E033-FDC7-4600-AB6E-19C2CC602736}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9722BB7-12FE-4F79-A2F2-C0EE8F680B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9722BB7-12FE-4F79-A2F2-C0EE8F680B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9722BB7-12FE-4F79-A2F2-C0EE8F680B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9722BB7-12FE-4F79-A2F2-C0EE8F680B9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FF1DF50-A559-4874-B2F8-93A3A488440C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FF1DF50-A559-4874-B2F8-93A3A488440C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF1DF50-A559-4874-B2F8-93A3A488440C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF1DF50-A559-4874-B2F8-93A3A488440C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F31D7C4-3E7D-4FCF-BBFE-C5A3A7621C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F31D7C4-3E7D-4FCF-BBFE-C5A3A7621C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F31D7C4-3E7D-4FCF-BBFE-C5A3A7621C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F31D7C4-3E7D-4FCF-BBFE-C5A3A7621C0F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BAE3061-2060-4226-A2AE-9C2E848BDD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BAE3061-2060-4226-A2AE-9C2E848BDD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BAE3061-2060-4226-A2AE-9C2E848BDD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BAE3061-2060-4226-A2AE-9C2E848BDD01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2EA57A3-3E1B-4F2C-AAD8-776D8EF978A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2EA57A3-3E1B-4F2C-AAD8-776D8EF978A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2EA57A3-3E1B-4F2C-AAD8-776D8EF978A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -131,6 +111,14 @@ Global
 		{8007208D-C7F1-47B3-B3E3-6BA50A8BFB6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8007208D-C7F1-47B3-B3E3-6BA50A8BFB6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8007208D-C7F1-47B3-B3E3-6BA50A8BFB6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{315BEC98-7232-40DB-BD68-64FB6A41F4E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{315BEC98-7232-40DB-BD68-64FB6A41F4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{315BEC98-7232-40DB-BD68-64FB6A41F4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{315BEC98-7232-40DB-BD68-64FB6A41F4E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EC3A386-8735-40C5-8F41-1E0C6AFFBA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EC3A386-8735-40C5-8F41-1E0C6AFFBA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EC3A386-8735-40C5-8F41-1E0C6AFFBA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EC3A386-8735-40C5-8F41-1E0C6AFFBA30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,10 +129,9 @@ Global
 		{EBD8C3E4-BBC9-4605-9E75-6A022BDE8806} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
 		{9D25F7A6-5B0E-4C6F-8DC2-75BAD863DD45} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
 		{2FF1DF50-A559-4874-B2F8-93A3A488440C} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
-		{5F31D7C4-3E7D-4FCF-BBFE-C5A3A7621C0F} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
-		{8BAE3061-2060-4226-A2AE-9C2E848BDD01} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
 		{229B8155-AA70-4619-847F-67198F6873F1} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
 		{17A40E78-FF37-42F9-8C5D-5094897EFB60} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
+		{5EC3A386-8735-40C5-8F41-1E0C6AFFBA30} = {FCECAF5A-FD9A-45E9-97DC-57A59BBFAB7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A072DA9-6D2A-4A7A-99B7-35823CC28EBB}

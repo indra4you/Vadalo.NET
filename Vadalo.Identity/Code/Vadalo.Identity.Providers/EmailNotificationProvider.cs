@@ -30,4 +30,25 @@ public sealed class EmailNotificationProvider(
                 emailNotificationRequest
             );
     }
+
+    public async Task SendOneTimePassword(
+        OneTimePasswordNotificationModel oneTimePasswordNotificationModel
+    )
+    {
+        var emailNotificationRequest = new Notification.EmailNotificationRequest(
+            [oneTimePasswordNotificationModel.EmailAddress],
+            "Vadalo - Sign In",
+            Assembly.GetExecutingAssembly(),
+            "OneTimePassword",
+            new Dictionary<string, string>
+            {
+                ["OneTimePassword"] = oneTimePasswordNotificationModel.OneTimePassword,
+            }
+        );
+
+        await this._emailNotificationService
+            .SendNotification(
+                emailNotificationRequest
+            );
+    }
 }

@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Vadalo.Data.Base\UnitTests\Vadalo.Data.Base.UnitTests\Vadalo.Data.Base.UnitTests.csproj" />
     <ProjectReference Include="..\..\..\Vadalo.Notification\Code\Vadalo.Notification.Email\Vadalo.Notification.Email.csproj" />
-    <ProjectReference Include="..\..\Code\Vadalo.Identity.Providers.Notification.Email\Vadalo.Identity.Providers.Notification.Email.csproj" />
+    <ProjectReference Include="..\..\Code\Vadalo.Identity.Providers\Vadalo.Identity.Providers.csproj" />
   </ItemGroup>
 
 </Project>

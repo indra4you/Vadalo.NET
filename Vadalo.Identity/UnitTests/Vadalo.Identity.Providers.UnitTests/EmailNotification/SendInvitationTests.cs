@@ -3,11 +3,11 @@ using Moq;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Vadalo.Identity.Providers;
+namespace Vadalo.Identity.Providers.EmailNotification;
 
 [TestClass]
 [TestCategory("Unit Tests")]
-public sealed class EmailNotificationProviderTests
+public sealed class SendInvitationTests
 {
     private static (
         EmailNotificationProvider emailNotificationProvider,

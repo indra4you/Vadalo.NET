@@ -13,8 +13,13 @@ public interface IIdentityDataProvider
         string signInID
     );
 
-    Task CreateIdentity(
+    Task CreateIdentityNode(
         Guid invitedBy,
         string signInID
+    );
+
+    Task CreatePassHashNode(
+        Guid identityID,
+        string passHash
     );
 }

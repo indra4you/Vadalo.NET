@@ -30,4 +30,22 @@ public sealed class IdentityController : ControllerBase
                 "Hello!"
             );
     }
+
+    [HttpPost("send-otp")]
+    [AllowAnonymous]
+    public async Task<IActionResult> SendOneTimePassword(
+        [FromBody] Identity.OneTimePasswordRequest oneTimePasswordRequest,
+        [FromServices] Identity.IdentityService identityService
+    )
+    {
+        await identityService
+            .SendOneTimePasswordByEmailAddress(
+                oneTimePasswordRequest
+            );
+
+        return base
+            .OkResponse(
+                "One time password sent successfully"
+            );
+    }
 }

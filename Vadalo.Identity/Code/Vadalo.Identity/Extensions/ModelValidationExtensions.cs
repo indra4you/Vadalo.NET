@@ -37,4 +37,34 @@ internal static class ModelValidationExtensions
                 validationMessages
             );
     }
+
+    internal static void ValidateAndThrow(
+        this OneTimePasswordRequest oneTimePasswordRequest
+    )
+    {
+        var validationMessages = new List<string>();
+
+        validationMessages
+            .CheckRequired(
+                oneTimePasswordRequest,
+                nameof(oneTimePasswordRequest)
+            );
+        if (validationMessages.HasValue())
+            throw new ValidationException(
+                "'OneTimePasswordRequest' model validation failed, check validation messages for more details",
+                validationMessages
+            );
+
+        validationMessages
+            .CheckEmailAddressRequired(
+                oneTimePasswordRequest.EmailAddress,
+                $"{nameof(oneTimePasswordRequest)}.{nameof(oneTimePasswordRequest.EmailAddress)}"
+            );
+
+        if (validationMessages.HasValue())
+            throw new ValidationException(
+                "'OneTimePasswordRequest' model validation failed, check validation messages for more details",
+                validationMessages
+            );
+    }
 }

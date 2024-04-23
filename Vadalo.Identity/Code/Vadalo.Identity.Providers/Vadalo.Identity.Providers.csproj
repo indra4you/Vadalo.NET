@@ -9,13 +9,20 @@
 
   <ItemGroup>
     <None Remove="Templates\Invitation.html" />
+    <None Remove="Templates\OneTimePassword.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Templates\OneTimePassword.html" />
     <EmbeddedResource Include="Templates\Invitation.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="8.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Vadalo.Data.Base\Code\Vadalo.Data.SqlServer\Vadalo.Data.SqlServer.csproj" />
     <ProjectReference Include="..\..\..\Vadalo.Notification\Code\Vadalo.Notification.Email\Vadalo.Notification.Email.csproj" />
     <ProjectReference Include="..\Vadalo.Identity\Vadalo.Identity.csproj" />
   </ItemGroup>

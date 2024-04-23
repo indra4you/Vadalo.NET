@@ -46,7 +46,7 @@ public static class MockDataProviderExtensions
         return mockDataProvider;
     }
 
-    public static Mock<Data.IDataProvider> ExecuteScalar(
+    public static Mock<Data.IDataProvider> MockExecuteScalar(
         this Mock<Data.IDataProvider> mockDataProvider,
         object? expectedReturnValue
     )
@@ -63,7 +63,7 @@ public static class MockDataProviderExtensions
         return mockDataProvider;
     }
 
-    public static Mock<Data.IDataProvider> ExecuteScalar(
+    public static Mock<Data.IDataProvider> MockExecuteScalar(
         this Mock<Data.IDataProvider> mockDataProvider,
         Exception exception
     )
@@ -80,7 +80,7 @@ public static class MockDataProviderExtensions
         return mockDataProvider;
     }
 
-    public static Mock<Data.IDataProvider> ExecuteReader<T>(
+    public static Mock<Data.IDataProvider> MockExecuteReader<T>(
         this Mock<Data.IDataProvider> mockDataProvider,
         IEnumerable<T> expectedReturnValue
     )
@@ -97,7 +97,7 @@ public static class MockDataProviderExtensions
         return mockDataProvider;
     }
 
-    public static Mock<Data.IDataProvider> ExecuteReader<T>(
+    public static Mock<Data.IDataProvider> MockExecuteReader<T>(
         this Mock<Data.IDataProvider> mockDataProvider,
         Exception exception
     )

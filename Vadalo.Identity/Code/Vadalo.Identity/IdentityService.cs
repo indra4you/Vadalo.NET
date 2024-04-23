@@ -4,10 +4,12 @@ namespace Vadalo.Identity;
 
 public sealed class IdentityService(
     Providers.IIdentityDataProvider identityDataProvider,
+    Providers.IPasswordProvider passwordProvider,
     Providers.IEmailNotificationProvider emailNotificationProvider
 )
 {
     private readonly Providers.IIdentityDataProvider _identityDataProvider = identityDataProvider;
+    private readonly Providers.IPasswordProvider _passwordProvider = passwordProvider;
     private readonly Providers.IEmailNotificationProvider _emailNotificationProvider = emailNotificationProvider;
 
     public async Task InviteByEmailAddress(
@@ -32,7 +34,7 @@ public sealed class IdentityService(
             );
         if (null == identity)
             await this._identityDataProvider
-                .CreateIdentity(
+                .CreateIdentityNode(
                     identityOf!.FromNode.ID,
                     inviteByEmailAddressRequest.InviteeEmailAddress
                 );
@@ -42,6 +44,40 @@ public sealed class IdentityService(
                 new(
                     inviteByEmailAddressRequest.InviteeEmailAddress,
                     identityOf.ToNode.ToDisplayName()
+                )
+            );
+    }
+
+    public async Task SendOneTimePasswordByEmailAddress(
+        OneTimePasswordRequest oneTimePasswordRequest
+    )
+    {
+        oneTimePasswordRequest
+            .ValidateAndThrow();
+
+        var identity = await this._identityDataProvider
+            .FetchIdentityNodeBySignInID(
+                oneTimePasswordRequest.EmailAddress!
+            );
+        if (null == identity)
+            throw new IdentityNodeNotFoundException(
+                $"Identity with Email Address '{oneTimePasswordRequest.EmailAddress}' not found"
+            );
+
+        var (oneTimePassword, passwordHash) = this._passwordProvider
+            .GeneratePassword();
+
+        await this._identityDataProvider
+            .CreatePassHashNode(
+                identity.ID,
+                passwordHash
+            );
+
+        await this._emailNotificationProvider
+            .SendOneTimePassword(
+                new(
+                    oneTimePasswordRequest.EmailAddress!,
+                    oneTimePassword
                 )
             );
     }

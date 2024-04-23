@@ -84,11 +84,28 @@ internal static class DependencyInjectionExtensions
     }
 
     internal static IServiceCollection AddIdentity(
-        this IServiceCollection serviceCollection
+        this IServiceCollection serviceCollection,
+        ConfigurationManager configurationManager
     )
     {
+        var oneTimePasswordOptions = configurationManager
+            .GetSection(
+                "OneTimePassword"
+            )
+            .Get<Identity.Providers.OneTimePasswordOptions>();
+        if (null == oneTimePasswordOptions)
+            throw new ConfigurationValidationException(
+                "'OneTimePassword' section is null"
+            );
+
+        serviceCollection
+            .AddSingleton(
+                oneTimePasswordOptions
+            );
+
         serviceCollection
             .AddTransient<Identity.Providers.IIdentityDataProvider, Identity.Providers.IdentityDataProvider>()
+            .AddTransient<Identity.Providers.IPasswordProvider, Identity.Providers.OneTimePasswordProvider>()
             .AddTransient<Identity.Providers.IEmailNotificationProvider, Identity.Providers.EmailNotificationProvider>()
             .AddTransient<Identity.IdentityService>();
 

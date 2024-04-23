@@ -4,28 +4,30 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace Vadalo.Identity.Providers;
+namespace Vadalo.Identity.Providers.IdentityData;
 
 [TestClass]
 [TestCategory("Unit Tests")]
-public sealed class IdentityDataProviderTests : Data.IDataProviderTests
+public sealed class CreatePassHashNodeTests : Data.IDataProviderTests
 {
     [TestMethod]
-    public async Task IdentityDataProvider_CreateIdentity_HappyPath_ShouldBeSuccessful(
+    public async Task IdentityDataProvider_CreatePassHashNode_HappyPath_ShouldBeSuccessful(
     )
     {
         // Arrange
         var mockDataProvider = this.ArrangeDataProvider()
             .MockExecuteNonQuery(1);
-        var identityDataProvider = new IdentityDataProvider(mockDataProvider.Object);
-        var invitedBy = Guid.NewGuid();
-        var signInID = "test@abc.com";
+        var identityDataProvider = new IdentityDataProvider(
+            mockDataProvider.Object
+        );
+        var identityID = Guid.NewGuid();
+        var passHash = "password hash";
 
         // Actions
         await identityDataProvider
-            .CreateIdentity(
-                invitedBy,
-                signInID
+            .CreatePassHashNode(
+                identityID,
+                passHash
             );
 
         // Assertions
@@ -41,18 +43,18 @@ public sealed class IdentityDataProviderTests : Data.IDataProviderTests
 
         var parameterEnumerator = parameters.GetEnumerator();
         parameterEnumerator.MoveNext();
-        Assert.AreEqual("@_invited_by", parameterEnumerator.Current.Name);
-        Assert.AreEqual(invitedBy, parameterEnumerator.Current.Value);
+        Assert.AreEqual("@_identity_id", parameterEnumerator.Current.Name);
+        Assert.AreEqual(identityID, parameterEnumerator.Current.Value);
         Assert.AreEqual(DbType.Guid, parameterEnumerator.Current.DbType);
 
         parameterEnumerator.MoveNext();
-        Assert.AreEqual("@_sign_in_id", parameterEnumerator.Current.Name);
-        Assert.AreEqual(signInID, parameterEnumerator.Current.Value);
+        Assert.AreEqual("@_pass_hash", parameterEnumerator.Current.Name);
+        Assert.AreEqual(passHash, parameterEnumerator.Current.Value);
         Assert.IsNull(parameterEnumerator.Current.DbType);
     }
 
     [TestMethod]
-    public async Task IdentityDataProvider_CreateIdentity_DatabaseException_ShouldThrowException(
+    public async Task IdentityDataProvider_CreatePassHashNode_DatabaseException_ShouldThrowException(
     )
     {
         // Arrange
@@ -61,15 +63,17 @@ public sealed class IdentityDataProviderTests : Data.IDataProviderTests
             .MockExecuteNonQuery(
                 exception
             );
-        var identityDataProvider = new IdentityDataProvider(mockDataProvider.Object);
-        var invitedBy = Guid.NewGuid();
-        var signInID = "test@abc.com";
+        var identityDataProvider = new IdentityDataProvider(
+            mockDataProvider.Object
+        );
+        var identityID = Guid.NewGuid();
+        var passHash = "password hash";
 
         // Actions
         async Task action() => await identityDataProvider
-            .CreateIdentity(
-                invitedBy,
-                signInID
+            .CreatePassHashNode(
+                identityID,
+                passHash
             );
 
         // Assertions
