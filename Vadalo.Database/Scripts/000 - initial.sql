@@ -73,7 +73,8 @@ CREATE TABLE [dbo].[pass_hashes]
 (
 	[identity_id]			UNIQUEIDENTIFIER			NOT NULL,
 	[created_at]			DATETIME2					NOT NULL	DEFAULT (SYSUTCDATETIME()),
-	[expire_at]				DATETIME2					NOT NULL	DEFAULT (DATEADD(MINUTE, 30, SYSUTCDATETIME())),
+	[expire_at]				DATETIME2					NOT NULL	DEFAULT (DATEADD(MINUTE, 3, SYSUTCDATETIME())),
 	[pass_hash]				NVARCHAR(1024)				NOT NULL,
+	[consumed_at]			DATETIME2					NULL,
 	CONSTRAINT [pk_pass_hashes] PRIMARY KEY ( [identity_id], [created_at] ),
 ) AS NODE;

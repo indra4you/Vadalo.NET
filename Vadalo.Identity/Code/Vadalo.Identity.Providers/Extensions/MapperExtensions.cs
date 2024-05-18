@@ -75,4 +75,18 @@ internal static class MapperExtensions
                 dataReader
             )
         );
+
+    internal static PassHashNodeModel ToPassHashNodeModel(
+        DbDataReader dataReader
+    ) =>
+        new(
+            dataReader
+                .GetGuid(
+                    "pass_hashes_identity_id"
+                ),
+            dataReader
+                .GetString(
+                    "pass_hashes_pass_hash"
+                )
+        );
 }

@@ -31,7 +31,7 @@ public sealed class SendOneTimePasswordByEmailAddressTests : IIdentityServiceTes
 
         // Actions
         async Task action() => await identityService
-            .SendOneTimePasswordByEmailAddress(
+            .SendOneTimePassword(
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
                 null
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
@@ -71,14 +71,14 @@ public sealed class SendOneTimePasswordByEmailAddressTests : IIdentityServiceTes
             mockPasswordProvider.Object,
             mockIEmailNotificationProvider.Object
         );
-        var oneTimePasswordRequest = new OneTimePasswordRequest
+        var oneTimePasswordRequest = new SendOneTimePasswordRequest
         {
             EmailAddress = emailAddress
         };
 
         // Actions
         async Task action() => await identityService
-            .SendOneTimePasswordByEmailAddress(
+            .SendOneTimePassword(
                 oneTimePasswordRequest
             );
 
@@ -110,14 +110,14 @@ public sealed class SendOneTimePasswordByEmailAddressTests : IIdentityServiceTes
             mockPasswordProvider.Object,
             mockIEmailNotificationProvider.Object
         );
-        var oneTimePasswordRequest = new OneTimePasswordRequest
+        var oneTimePasswordRequest = new SendOneTimePasswordRequest
         {
             EmailAddress = Extensions.INVITEE_EMAIL_ADDRESS
         };
 
         // Actions
         async Task action() => await identityService
-            .SendOneTimePasswordByEmailAddress(
+            .SendOneTimePassword(
                 oneTimePasswordRequest
             );
 
@@ -156,14 +156,14 @@ public sealed class SendOneTimePasswordByEmailAddressTests : IIdentityServiceTes
             mockPasswordProvider.Object,
             mockIEmailNotificationProvider.Object
         );
-        var oneTimePasswordRequest = new OneTimePasswordRequest
+        var oneTimePasswordRequest = new SendOneTimePasswordRequest
         {
             EmailAddress = Extensions.INVITEE_EMAIL_ADDRESS
         };
 
         // Actions
         await identityService
-            .SendOneTimePasswordByEmailAddress(
+            .SendOneTimePassword(
                 oneTimePasswordRequest
             );
 

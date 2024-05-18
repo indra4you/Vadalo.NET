@@ -12,30 +12,30 @@ public sealed class IdentityService(
     private readonly Providers.IPasswordProvider _passwordProvider = passwordProvider;
     private readonly Providers.IEmailNotificationProvider _emailNotificationProvider = emailNotificationProvider;
 
-    public async Task InviteByEmailAddress(
+    public async Task Invite(
         InviteByEmailAddressRequest inviteByEmailAddressRequest
     )
     {
         inviteByEmailAddressRequest
             .ValidateAndThrow();
 
-        var identityOf = await this._identityDataProvider
+        var identityOfEdge = await this._identityDataProvider
             .FetchIdentityOfEdgeByEmailAddress(
                 inviteByEmailAddressRequest.InvitedByEmailAddress
             );
-        if (null == identityOf)
+        if (null == identityOfEdge)
             throw new IdentityOfEdgeNotFoundException(
                 $"Invitee with Email Address '{inviteByEmailAddressRequest.InviteeEmailAddress}' not found"
             );
 
-        var identity = await this._identityDataProvider
+        var identityNode = await this._identityDataProvider
             .FetchIdentityNodeBySignInID(
                 inviteByEmailAddressRequest.InviteeEmailAddress
             );
-        if (null == identity)
+        if (null == identityNode)
             await this._identityDataProvider
                 .CreateIdentityNode(
-                    identityOf!.FromNode.ID,
+                    identityOfEdge!.FromNode.ID,
                     inviteByEmailAddressRequest.InviteeEmailAddress
                 );
 
@@ -43,25 +43,25 @@ public sealed class IdentityService(
             .SendInvitation(
                 new(
                     inviteByEmailAddressRequest.InviteeEmailAddress,
-                    identityOf.ToNode.ToDisplayName()
+                    identityOfEdge.ToNode.ToDisplayName()
                 )
             );
     }
 
-    public async Task SendOneTimePasswordByEmailAddress(
-        OneTimePasswordRequest oneTimePasswordRequest
+    public async Task SendOneTimePassword(
+        SendOneTimePasswordRequest sendOneTimePasswordRequest
     )
     {
-        oneTimePasswordRequest
+        sendOneTimePasswordRequest
             .ValidateAndThrow();
 
-        var identity = await this._identityDataProvider
+        var identityNode = await this._identityDataProvider
             .FetchIdentityNodeBySignInID(
-                oneTimePasswordRequest.EmailAddress!
+                sendOneTimePasswordRequest.EmailAddress!
             );
-        if (null == identity)
+        if (null == identityNode)
             throw new IdentityNodeNotFoundException(
-                $"Identity with Email Address '{oneTimePasswordRequest.EmailAddress}' not found"
+                $"Identity with Email Address '{sendOneTimePasswordRequest.EmailAddress}' not found"
             );
 
         var (oneTimePassword, passwordHash) = this._passwordProvider
@@ -69,16 +69,77 @@ public sealed class IdentityService(
 
         await this._identityDataProvider
             .CreatePassHashNode(
-                identity.ID,
+                identityNode.ID,
                 passwordHash
             );
 
         await this._emailNotificationProvider
             .SendOneTimePassword(
                 new(
-                    oneTimePasswordRequest.EmailAddress!,
+                    sendOneTimePasswordRequest.EmailAddress!,
                     oneTimePassword
                 )
             );
+    }
+
+    public async Task<bool> ValidateOneTimePassword(
+        ValidateOneTimePasswordRequest validateOneTimePasswordRequest
+    )
+    {
+        validateOneTimePasswordRequest
+            .ValidateAndThrow();
+
+        var identityNode = await this._identityDataProvider
+            .FetchIdentityNodeBySignInID(
+                validateOneTimePasswordRequest.EmailAddress!
+            );
+        if (null == identityNode)
+            throw new IdentityNodeNotFoundException(
+                $"Identity with Email Address '{validateOneTimePasswordRequest.EmailAddress}' not found"
+            );
+
+        var passHashNode = await this._identityDataProvider
+            .FetchActivePassHashNodeByIdentityID(
+                identityNode.ID
+            );
+        if (null == passHashNode)
+            return false;
+
+        var isOneTimePasswordValid = this._passwordProvider
+            .VerifyPassword(
+                passHashNode.PassHash,
+                validateOneTimePasswordRequest.OneTimePassword!
+            );
+        if (isOneTimePasswordValid)
+            await this._identityDataProvider
+                .UpdatePassHashEdgeByIdentityID(
+                    identityNode.ID
+                );
+
+        return isOneTimePasswordValid;
+    }
+
+    public async Task<string> GenerateAuthenticationToken(
+        GenerateAuthenticationTokenRequest generateAuthenticationTokenRequest
+    )
+    {
+        generateAuthenticationTokenRequest
+            .ValidateAndThrow();
+
+        var identityOfEdge = await this._identityDataProvider
+            .FetchIdentityOfEdgeByEmailAddress(
+                generateAuthenticationTokenRequest.EmailAddress!
+            );
+        if (null == identityOfEdge)
+            throw new IdentityOfEdgeNotFoundException(
+                $"Identity with Email Address '{generateAuthenticationTokenRequest.EmailAddress}' not found"
+            );
+
+        var jwtToken = this._passwordProvider
+            .GenerateJwtToken(
+                identityOfEdge
+            );
+
+        return jwtToken;
     }
 }

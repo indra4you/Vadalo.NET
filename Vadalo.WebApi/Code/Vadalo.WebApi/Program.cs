@@ -55,6 +55,11 @@ public static class Program
                 webApplicationBuilder.Configuration
             );
 
+        webApplicationBuilder.Services
+            .AddAuthorization()
+            .AddAuthentication()
+            .AddBearerToken();
+
         // Add controller
         webApplicationBuilder.Services
             .AddControllers();
@@ -65,6 +70,10 @@ public static class Program
 
         var webApplication = webApplicationBuilder
             .Build();
+
+        webApplication
+            .UseAuthorization()
+            .UseAuthentication();
 
         webApplication
             .MapControllers();

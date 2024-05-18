@@ -128,4 +128,52 @@ public sealed class IdentityDataProvider(
                 parameters
             );
     }
+
+    public async Task<PassHashNodeModel?> FetchActivePassHashNodeByIdentityID(
+        Guid identityID
+    )
+    {
+        var parameters = _dataProvider.CreateParameters()
+            .AddParameter("@_identity_id", identityID, DbType.Guid);
+
+        var passHashNodes = await _dataProvider
+            .ExecuteReader(
+                @"
+                    SELECT
+	                      [pass_hashes].[identity_id] AS pass_hashes_identity_id
+						, [pass_hashes].[pass_hash] AS pass_hashes_pass_hash
+                    FROM
+	                      [dbo].[pass_hashes]
+                    WHERE
+                        [pass_hashes].[identity_id] = @_identity_id
+                    AND [pass_hashes].[expire_at] >= SYSUTCDATETIME()
+                ",
+                parameters,
+                MapperExtensions.ToPassHashNodeModel
+            );
+
+        return passHashNodes
+            .FirstOrDefault();
+    }
+
+    public async Task UpdatePassHashEdgeByIdentityID(
+        Guid identityID
+    )
+    {
+        var parameters = _dataProvider.CreateParameters()
+            .AddParameter("@_identity_id", identityID, DbType.Guid);
+
+        await _dataProvider
+            .ExecuteNonQuery(
+                @"
+                    UPDATE
+                        [dbo].[pass_hashes]
+                    SET
+                          [consumed_at] = SYSUTCDATETIME()
+                    WHERE
+                        [pass_hashes].[identity_id] = @_identity_id
+                ",
+                parameters
+            );
+    }
 }

@@ -49,7 +49,7 @@ public sealed class OneTimePasswordProvider(
                 this._oneTimePasswordOptions.HashNumberOfBytesRequested
             );
 
-        var generatedHash = new byte[salt.Length  + hash.Length];
+        var generatedHash = new byte[salt.Length + hash.Length];
         Buffer
             .BlockCopy(
                 salt,
@@ -91,5 +91,49 @@ public sealed class OneTimePasswordProvider(
             oneTimePassword,
             passwordHash
         );
+    }
+
+    public bool VerifyPassword(
+        string passwordHash,
+        string oneTimePassword
+    )
+    {
+        var generatedHash = Convert
+            .FromBase64String(
+                passwordHash
+            );
+        var salt = new byte[this._oneTimePasswordOptions.HashSaltSize];
+        var originalHash = new byte[generatedHash.Length - salt.Length];
+        Buffer
+            .BlockCopy(
+                generatedHash,
+                0,
+                salt,
+                0,
+                salt.Length
+            );
+        Buffer
+            .BlockCopy(
+                generatedHash,
+                salt.Length,
+                originalHash,
+                0,
+                originalHash.Length
+            );
+
+        var computedHash = KeyDerivation
+            .Pbkdf2(
+                oneTimePassword,
+                salt,
+                this._oneTimePasswordOptions.HashPrf,
+                this._oneTimePasswordOptions.HashIterations,
+                this._oneTimePasswordOptions.HashNumberOfBytesRequested
+            );
+
+        return CryptographicOperations
+            .FixedTimeEquals(
+                computedHash,
+                originalHash
+            );
     }
 }

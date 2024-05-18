@@ -31,7 +31,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         async Task action() => await identityService
-            .InviteByEmailAddress(
+            .Invite(
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
                 null
 #pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
@@ -74,7 +74,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         async Task action() => await identityService
-            .InviteByEmailAddress(
+            .Invite(
                 inviteByEmailAddressRequest
             );
 
@@ -126,7 +126,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         async Task action() => await identityService
-            .InviteByEmailAddress(
+            .Invite(
                 inviteByEmailAddressRequest
             );
 
@@ -171,7 +171,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         async Task action() => await identityService
-            .InviteByEmailAddress(
+            .Invite(
                 inviteByEmailAddressRequest
             );
 
@@ -210,7 +210,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         async Task action() => await identityService
-            .InviteByEmailAddress(
+            .Invite(
                 inviteByEmailAddressRequest
             );
 
@@ -253,7 +253,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         await identityService
-            .InviteByEmailAddress(
+            .Invite(
                 inviteByEmailAddressRequest
             );
 
@@ -329,7 +329,7 @@ public sealed class InviteByEmailAddressTests : IIdentityServiceTests
 
         // Actions
         await identityService
-            .InviteByEmailAddress(
+            .Invite(
                 inviteByEmailAddressRequest
             );
 

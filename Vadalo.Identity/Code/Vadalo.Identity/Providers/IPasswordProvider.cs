@@ -7,4 +7,13 @@ public interface IPasswordProvider
         string passwordHash
     ) GeneratePassword(
     );
+
+    bool VerifyPassword(
+        string passwordHash,
+        string oneTimePassword
+    );
+
+    string GenerateJwtToken(
+        IdentityOfEdgeModel identityOfEdgeModel
+    );
 }

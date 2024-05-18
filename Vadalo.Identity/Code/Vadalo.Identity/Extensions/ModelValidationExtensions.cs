@@ -39,31 +39,95 @@ internal static class ModelValidationExtensions
     }
 
     internal static void ValidateAndThrow(
-        this OneTimePasswordRequest oneTimePasswordRequest
+        this SendOneTimePasswordRequest sendOneTimePasswordRequest
     )
     {
         var validationMessages = new List<string>();
 
         validationMessages
             .CheckRequired(
-                oneTimePasswordRequest,
-                nameof(oneTimePasswordRequest)
+                sendOneTimePasswordRequest,
+                nameof(sendOneTimePasswordRequest)
             );
         if (validationMessages.HasValue())
             throw new ValidationException(
-                "'OneTimePasswordRequest' model validation failed, check validation messages for more details",
+                "'SendOneTimePasswordRequest' model validation failed, check validation messages for more details",
                 validationMessages
             );
 
         validationMessages
             .CheckEmailAddressRequired(
-                oneTimePasswordRequest.EmailAddress,
-                $"{nameof(oneTimePasswordRequest)}.{nameof(oneTimePasswordRequest.EmailAddress)}"
+                sendOneTimePasswordRequest.EmailAddress,
+                $"{nameof(sendOneTimePasswordRequest)}.{nameof(sendOneTimePasswordRequest.EmailAddress)}"
             );
 
         if (validationMessages.HasValue())
             throw new ValidationException(
-                "'OneTimePasswordRequest' model validation failed, check validation messages for more details",
+                "'SendOneTimePasswordRequest' model validation failed, check validation messages for more details",
+                validationMessages
+            );
+    }
+
+    internal static void ValidateAndThrow(
+        this ValidateOneTimePasswordRequest validateOneTimePasswordRequest
+    )
+    {
+        var validationMessages = new List<string>();
+
+        validationMessages
+            .CheckRequired(
+                validateOneTimePasswordRequest,
+                nameof(validateOneTimePasswordRequest)
+            );
+        if (validationMessages.HasValue())
+            throw new ValidationException(
+                "'ValidateOneTimePasswordRequest' model validation failed, check validation messages for more details",
+                validationMessages
+            );
+
+        validationMessages
+            .CheckEmailAddressRequired(
+                validateOneTimePasswordRequest.EmailAddress,
+                $"{nameof(validateOneTimePasswordRequest)}.{nameof(validateOneTimePasswordRequest.EmailAddress)}"
+            )
+            .CheckRequired(
+                validateOneTimePasswordRequest.OneTimePassword,
+                $"{nameof(validateOneTimePasswordRequest)}.{nameof(validateOneTimePasswordRequest.OneTimePassword)}"
+            );
+
+        if (validationMessages.HasValue())
+            throw new ValidationException(
+                "'ValidateOneTimePasswordRequest' model validation failed, check validation messages for more details",
+                validationMessages
+            );
+    }
+
+    internal static void ValidateAndThrow(
+        this GenerateAuthenticationTokenRequest generateAuthenticationTokenRequest
+    )
+    {
+        var validationMessages = new List<string>();
+
+        validationMessages
+            .CheckRequired(
+                generateAuthenticationTokenRequest,
+                nameof(generateAuthenticationTokenRequest)
+            );
+        if (validationMessages.HasValue())
+            throw new ValidationException(
+                "'GenerateAuthenticationTokenRequest' model validation failed, check validation messages for more details",
+                validationMessages
+            );
+
+        validationMessages
+            .CheckEmailAddressRequired(
+                generateAuthenticationTokenRequest.EmailAddress,
+                $"{nameof(generateAuthenticationTokenRequest)}.{nameof(generateAuthenticationTokenRequest.EmailAddress)}"
+            );
+
+        if (validationMessages.HasValue())
+            throw new ValidationException(
+                "'GenerateAuthenticationTokenRequest' model validation failed, check validation messages for more details",
                 validationMessages
             );
     }

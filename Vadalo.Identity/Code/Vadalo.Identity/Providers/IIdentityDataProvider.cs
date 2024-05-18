@@ -22,4 +22,12 @@ public interface IIdentityDataProvider
         Guid identityID,
         string passHash
     );
+
+    Task<PassHashNodeModel?> FetchActivePassHashNodeByIdentityID(
+        Guid identityID
+    );
+
+    Task UpdatePassHashEdgeByIdentityID(
+        Guid identityID
+    );
 }
